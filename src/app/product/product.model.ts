@@ -2,9 +2,11 @@ export class Product {
     constructor(
         public id?: number,
         public name?: string,
+        public costPrice?: number,
         public price?: number,
         public quantity?: number,
         public unitOfMeasurement?: string,
+        public manufacturer?: string,
         public barcode?: string,
         public productCategoryId?: number,
         public productCategoryName?: string,
