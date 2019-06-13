@@ -17,7 +17,8 @@ import { ProductService } from "./product.service";
 @Component({
     selector: "Scan",
     moduleId: module.id,
-    templateUrl: "./scan.component.html"
+    templateUrl: "./scan.component.html",
+    styleUrls: ["./scan.component.scss"]
 })
 export class ScanComponent implements OnInit {
 

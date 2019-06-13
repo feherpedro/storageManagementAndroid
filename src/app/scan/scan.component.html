@@ -12,14 +12,15 @@
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
                 ios.position="left">
     </ActionItem>
-    <Label class="action-bar-title" text="Scan"></Label>
+    <Label class="action-bar-title" text="Árucikk leolvasó"></Label>
 </ActionBar>
 
 <GridLayout class="page page-content" tkMainContent>
 <StackLayout class="page">
-    <Label text="Árucikk leolvasó" class="h1 text-center"></Label>
-    <Button text="Beolvasás" (tap)="onScan()" class="btn btn-primary btn-active"></Button>
-    <Label text="Beolvasott formátum: {{scannedFormat}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
-    <Label text="Beolvasott kód: {{scannedText}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
+    <!--<Label text="Árucikk leolvasó" class="h1 text-center"></Label>
+    <Button text="Beolvasás" (tap)="onScan()" class="btn btn-primary btn-active"></Button>-->
+    <Button text="Beolvasás" (tap)="onScan()" class="btn btn-info btn-circle btn-xl" verticalAlignment="middle" horizontalAlignment="center"><i class="glyphicon"></i></Button>
+    <!--<Label text="Beolvasott formátum: {{scannedFormat}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
+    <Label text="Beolvasott kód: {{scannedText}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>-->
 </StackLayout>
 </GridLayout>
