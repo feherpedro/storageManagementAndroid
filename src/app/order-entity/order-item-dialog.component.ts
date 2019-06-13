@@ -3,13 +3,13 @@ import { Component, OnInit } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { BarcodeScanner } from "nativescript-barcodescanner";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { switchMap } from "rxjs/operators";
-import * as dialogs from "ui/dialogs";
-import { OrderItem } from "~/order-entity/order-item.model";
-import { OrderItemService } from "~/order-entity/order-item.service";
-import { Product } from "~/product/product.model";
-import { ProductService } from "~/product/product.service";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import { OrderItem } from "./order-item.model";
+import { OrderItemService } from "./order-item.service";
+import { Product } from "../product/product.model";
+import { ProductService } from "../product/product.service";
 
 @Component({
     selector: "OrderItemtDialog",

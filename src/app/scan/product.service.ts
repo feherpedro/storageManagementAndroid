@@ -1,8 +1,8 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import "rxjs/add/operator/map";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
+import { map } from "rxjs/operators";
 import { Product } from "./product.model";
 // import { createRequestOption } from "../../shared";
 
@@ -20,27 +20,27 @@ export class ProductService {
         const copy = this.convert(product);
 
         return this.http.post<Product>(this.resourceUrl, copy, { observe: "response" })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     update(product: Product): Observable<EntityResponseType> {
         const copy = this.convert(product);
 
         return this.http.put<Product>(this.resourceUrl, copy, { observe: "response" })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     find(id: number): Observable<EntityResponseType> {
 
         return this.http.get<Product>(`${this.resourceUrl}/${id}`, { observe: "response"})
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     query(req?: any): Observable<HttpResponse<Product[]>> {
         // const options = createRequestOption(req);
 
         return this.http.get<Product[]>(this.resourceUrl, { observe: "response" })/* params: options,*/
-            .map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res));
+            .pipe(map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res)));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
@@ -52,7 +52,7 @@ export class ProductService {
         // const options = createRequestOption(req);
 
         return this.http.get<Product[]>(this.resourceSearchUrl, { observe: "response" })/* params: options,*/
-            .map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res));
+            .pipe(map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res)));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

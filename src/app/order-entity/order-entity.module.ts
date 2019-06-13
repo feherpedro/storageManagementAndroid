@@ -6,16 +6,16 @@ import { ModalDialogService, NativeScriptFormsModule } from "nativescript-angula
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { DateHelperService } from "~/date-helper.service";
-import { OrderEntityDetailComponent } from "~/order-entity/order-entity-detail.component";
-import { OrderEntityDialogComponent } from "~/order-entity/order-entity-dialog.component";
-import { OrderEntityRoutingModule } from "~/order-entity/order-entity-routing.module";
-import { OrderEntityComponent } from "~/order-entity/order-entity.component";
-import { OrderEntityService } from "~/order-entity/order-entity.service";
-import { OrderItemDetailComponent } from "~/order-entity/order-item-detail.component";
-import { OrderItemDialogComponent } from "~/order-entity/order-item-dialog.component";
-import { OrderItemService } from "~/order-entity/order-item.service";
-import { ProductService } from "~/product/product.service";
+import { DateHelperService } from "../date-helper.service";
+import { OrderEntityDetailComponent } from "./order-entity-detail.component";
+import { OrderEntityDialogComponent } from "./order-entity-dialog.component";
+import { OrderEntityRoutingModule } from "./order-entity-routing.module";
+import { OrderEntityComponent } from "./order-entity.component";
+import { OrderEntityService } from "./order-entity.service";
+import { OrderItemDetailComponent } from "./order-item-detail.component";
+import { OrderItemDialogComponent } from "./order-item-dialog.component";
+import { OrderItemService } from "./order-item.service";
+import { ProductService } from "../product/product.service";
 
 @NgModule({
     imports: [

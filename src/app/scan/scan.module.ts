@@ -7,7 +7,7 @@ import { ScanComponent } from "./scan.component";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 import { BarcodeScanner } from "nativescript-barcodescanner";
-import { ProductService } from "~/scan/product.service";
+import { ProductService } from "./product.service";
 
 @NgModule({
     imports: [

@@ -1,17 +1,17 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, OnInit, ViewContainerRef } from "@angular/core";
-import * as app from "application";
+import * as app from "tns-core-modules/application";
 import { ModalDialogService } from "nativescript-angular";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { switchMap } from "rxjs/operators";
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import { OrderEntity } from "~/order-entity/order-entity.model";
-import { OrderEntityService } from "~/order-entity/order-entity.service";
-import { OrderItemDialogComponent } from "~/order-entity/order-item-dialog.component";
-import { OrderItem } from "~/order-entity/order-item.model";
-import { OrderItemService } from "~/order-entity/order-item.service";
+import { OrderEntity } from "./order-entity.model";
+import { OrderEntityService } from "./order-entity.service";
+import { OrderItemDialogComponent } from "./order-item-dialog.component";
+import { OrderItem } from "./order-item.model";
+import { OrderItemService } from "./order-item.service";
 
 @Component({
     selector: "OrderEntityDetail",

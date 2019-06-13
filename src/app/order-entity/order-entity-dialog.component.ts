@@ -2,10 +2,10 @@ import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular";
 import { BarcodeScanner } from "nativescript-barcodescanner";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { DatePicker } from "tns-core-modules/ui/date-picker";
-import { OrderEntity } from "~/order-entity/order-entity.model";
-import { OrderEntityService } from "~/order-entity/order-entity.service";
+import { OrderEntity } from "./order-entity.model";
+import { OrderEntityService } from "./order-entity.service";
 
 @Component({
     selector: "OrderEntityDialog",
@@ -14,7 +14,7 @@ import { OrderEntityService } from "~/order-entity/order-entity.service";
 })
 export class OrderEntityDialogComponent implements OnInit {
 
-    @ViewChild("datePicker") datePicker: ElementRef;
+    @ViewChild("datePicker", {static: false}) datePicker: ElementRef;
 
     orderEntity = new OrderEntity();
     isSaving: boolean;

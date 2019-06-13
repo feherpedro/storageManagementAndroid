@@ -1,13 +1,13 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import * as app from "application";
+import * as app from "tns-core-modules/application";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { switchMap } from "rxjs/operators";
 import * as dialogs from "tns-core-modules/ui/dialogs";
-import { OrderItem } from "~/order-entity/order-item.model";
-import { OrderItemService } from "~/order-entity/order-item.service";
+import { OrderItem } from "./order-item.model";
+import { OrderItemService } from "./order-item.service";
 
 @Component({
     selector: "OrderItemDetail",

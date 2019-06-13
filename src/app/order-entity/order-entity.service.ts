@@ -1,10 +1,11 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { DateHelperService } from "~/date-helper.service";
-import { OrderEntity } from "~/order-entity/order-entity.model";
-import { OrderItem } from "~/order-entity/order-item.model";
+import { Observable } from "rxjs";
+import { DateHelperService } from "../date-helper.service";
+import { OrderEntity } from "./order-entity.model";
+import { OrderItem } from "./order-item.model";
 
+import { map } from "rxjs/operators";
 // import { createRequestOption } from "../../shared";
 
 export type EntityResponseType = HttpResponse<OrderEntity>;
@@ -21,33 +22,33 @@ export class OrderEntityService {
         const copy = this.convert(orderEntity);
 
         return this.http.post<OrderEntity>(this.resourceUrl, copy, { observe: "response" })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     placeIntoProducts(orderItems: OrderItem[], id: number): Observable<EntityResponseType> {
 
         return this.http.post(`${this.resourceUrl}/${id}/placeIntoProducts`, orderItems, { observe: "response" })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     update(orderEntity: OrderEntity): Observable<EntityResponseType> {
         const copy = this.convert(orderEntity);
 
         return this.http.put<OrderEntity>(this.resourceUrl, copy, { observe: "response" })
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     find(id: number): Observable<EntityResponseType> {
 
         return this.http.get<OrderEntity>(`${this.resourceUrl}/${id}`, { observe: "response"})
-            .map((res: EntityResponseType) => this.convertResponse(res));
+            .pipe(map((res: EntityResponseType) => this.convertResponse(res)));
     }
 
     query(req?: any): Observable<HttpResponse<OrderEntity[]>> {
         // const options = createRequestOption(req);
 
         return this.http.get<OrderEntity[]>(this.resourceUrl, { observe: "response" })/*params: options,*/
-            .map((res: HttpResponse<OrderEntity[]>) => this.convertArrayResponse(res));
+            .pipe(map((res: HttpResponse<OrderEntity[]>) => this.convertArrayResponse(res)));
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
@@ -59,7 +60,7 @@ export class OrderEntityService {
         // const options = createRequestOption(req);
 
         return this.http.get<OrderEntity[]>(this.resourceSearchUrl, { observe: "response" })/*params: options,*/
-            .map((res: HttpResponse<OrderEntity[]>) => this.convertArrayResponse(res));
+            .pipe(map((res: HttpResponse<OrderEntity[]>) => this.convertArrayResponse(res)));
     }
 
     private convertResponse(res: EntityResponseType): EntityResponseType {

@@ -3,10 +3,10 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular";
 import { RouterExtensions } from "nativescript-angular/router";
 import { BarcodeScanner } from "nativescript-barcodescanner";
-import { Observable } from "rxjs/Observable";
-import * as dialogs from "ui/dialogs";
-import { Product } from "~/product/product.model";
-import { ProductService } from "~/product/product.service";
+import { Observable } from "rxjs";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import { Product } from "./product.model";
+import { ProductService } from "./product.service";
 
 @Component({
     selector: "ProductDialog",
@@ -15,8 +15,8 @@ import { ProductService } from "~/product/product.service";
 })
 export class ProductDialogComponent implements OnInit {
 
-    @ViewChild("barcodeModel") barcodeModel: ElementRef;
-    @ViewChild("nameModel") nameModel: ElementRef;
+    @ViewChild("barcodeModel", {static: false}) barcodeModel: ElementRef;
+    @ViewChild("nameModel", {static: false}) nameModel: ElementRef;
 
     product = new Product();
     isSaving: boolean;

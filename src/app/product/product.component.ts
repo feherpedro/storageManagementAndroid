@@ -4,9 +4,9 @@ import { ModalDialogService } from "nativescript-angular";
 import { RouterExtensions } from "nativescript-angular/router";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
-import { ProductDialogComponent } from "~/product/product-dialog.component";
-import { Product } from "~/product/product.model";
-import { ProductService } from "~/product/product.service";
+import { ProductDialogComponent } from "./product-dialog.component";
+import { Product } from "./product.model";
+import { ProductService } from "./product.service";
 
 @Component({
     selector: "Product",

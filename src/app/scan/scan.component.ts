@@ -1,11 +1,11 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import * as app from "application";
+import * as app from "tns-core-modules/application";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import * as dialogs from "ui/dialogs";
-import { Product } from "~/scan/product.model";
-import { ProductService } from "~/scan/product.service";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import { Product } from "./product.model";
+import { ProductService } from "./product.service";
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the

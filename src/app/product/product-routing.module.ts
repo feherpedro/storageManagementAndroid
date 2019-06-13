@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
-import { ProductDetailComponent } from "~/product/product-detail.component";
-import { ProductDialogComponent } from "~/product/product-dialog.component";
+import { ProductDetailComponent } from "./product-detail.component";
+import { ProductDialogComponent } from "./product-dialog.component";
 import { ProductComponent } from "./product.component";
 
 const routes: Routes = [

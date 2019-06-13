@@ -6,9 +6,9 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
-import { ProductDetailComponent } from "~/product/product-detail.component";
-import { ProductDialogComponent } from "~/product/product-dialog.component";
-import { ProductService } from "~/product/product.service";
+import { ProductDetailComponent } from "./product-detail.component";
+import { ProductDialogComponent } from "./product-dialog.component";
+import { ProductService } from "./product.service";
 import { ProductRoutingModule } from "./product-routing.module";
 import { ProductComponent } from "./product.component";
 
