@@ -1,0 +1,38 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Termékek"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+    <Button text="Új termék" (tap)="onNewProduct()" class="btn btn-primary btn-active"></Button>
+    <GridLayout backgroundColor="white">
+        <ListView [items]="products" class="list-group">
+            <ng-template let-product="item">
+                <StackLayout class="list-group-item" (tap)="onDetailTap(product)">
+                    <Label text="{{ product.id }} azonosítójú termék" class="label font-weight-bold"></Label>
+                    <Label text="vonalkód: {{product.barcode}}" class="footnote"></Label>
+                    <Label text="név: {{product.name}}" class="footnote"></Label>
+                    <Label text="státusza: {{product.statusName}}" class="footnote"></Label>
+                    <Label text="ár: {{product.price}}" class="footnote"></Label>
+                    <Label text="mennyiség: {{product.quantity}} {{product.unitOfMeasurement}}" class="footnote"></Label>
+                    <!--<Label text="mértékegység: {{product.unitOfMeasurement}}" class="footnote"></Label>-->
+                    <Label text="termék kategória: {{product.productCategoryName}}" class="footnote"></Label>
+                    <Label text="ár kategória: {{product.priceCategoryName}}" class="footnote"></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </GridLayout>
+    <!--<ListView class="list-group" items="{{ countries }}" itemTap="{{ onItemTap }}"
+              style="height:1250px">
+        <ListView.itemTemplate>
+            <FlexboxLayout flexDirection="row" class="list-group-item">
+                <Image src="{{ imageSrc }}" class="thumb img-circle"/>
+                <Label text="{{ name }}" class="list-group-item-heading" verticalAlignment="center"
+                       style="width: 60%"/>
+            </FlexboxLayout>
+        </ListView.itemTemplate>
+    </ListView>-->
+</StackLayout>

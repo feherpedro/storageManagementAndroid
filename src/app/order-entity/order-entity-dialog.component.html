@@ -1,0 +1,7 @@
+<StackLayout class="page">
+    <Label text="Új bevételezés" class="h1 text-center text-white"></Label>
+    <Label text="Létrehozás dátuma:" class="h2 text-center m-t-4"></Label>
+    <DatePicker #datePicker></DatePicker>
+    <Button text="Mentés" (tap)="save()" class="btn btn-primary btn-active"></Button>
+    <Button text="Mégsem" (tap)="onClose()" class="btn btn-primary btn-active"></Button>
+</StackLayout>

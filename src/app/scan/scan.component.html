@@ -1,21 +1,25 @@
 <ActionBar class="action-bar">
-    <!-- 
+    <!--
     Use the NavigationButton as a side-drawer button in Android
     because ActionItems are shown on the right side of the ActionBar
     -->
     <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
-    <!-- 
+    <!--
     Use the ActionItem for IOS with position set to left. Using the
     NavigationButton as a side-drawer button in iOS is not possible,
     because its function is to always navigate back in the application.
     -->
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-        ios.position="left">
+                ios.position="left">
     </ActionItem>
-    <Label class="action-bar-title" text="Kezdőlap"></Label>
+    <Label class="action-bar-title" text="Scan"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf015;"></Label>
-    <Label class="page-placeholder" text="Raktár nyilvántartó rendszer kezdőlap"></Label>
+<GridLayout class="page page-content" tkMainContent>
+<StackLayout class="page">
+    <Label text="Barcode Scanner" class="h1 text-center"></Label>
+    <Button text="SCAN" (tap)="onScan()" class="btn btn-primary btn-active"></Button>
+    <Label text="Beolvasott formátum: {{scannedFormat}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
+    <Label text="Beolvasott kód: {{scannedText}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
+</StackLayout>
 </GridLayout>

@@ -1,0 +1,32 @@
+<StackLayout class="page">
+    <Label text="Új tétel" class="h1 text-center text-white"></Label>
+    <Button text="Termék beazonosítása vonalkód alapján" (tap)="onScan()" class="btn" margin="5"
+            ></Button><!--row="1" col="0, 1"-->
+    <GridLayout rows="auto, auto, auto, auto, auto" columns="auto, *" margin="5" marginTop="10"
+                visibility="{{ orderItem.productBarcode ? 'visible' : 'collapsed' }}">
+        <Label text="Vonalkód:" row="0" col="0" class="h3" marginTop="20"></Label>
+        <Label text={{orderItem.productBarcode}} row="0" col="1" class="label font-weight-bold" marginTop="20"></Label>
+        <!--<TextView row="0" col="1" class="text-input" marginTop="10" isEnabled="false"
+                  required [(ngModel)]="orderItem.productBarcode"></TextView>-->
+
+        <Label text="Név:" row="1" col="0" class="h3" marginTop="20"></Label>
+        <Label text={{orderItem.productName}} row="1" col="1" class="label font-weight-bold" marginTop="20"></Label>
+        <!--<TextView row="2" col="1" class="text-input" marginTop="10" isEnabled="false" text="{{orderItem.productName}}"
+                  required></TextView>--><!-- [(ngModel)]="orderItem.productName"-->
+
+        <Label text="Mennyiség:" row="2" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="2" col="1" class="text-input" marginTop="10"
+                  required [(ngModel)]="orderItem.quantity"></TextView>
+
+        <Label text="Mértékegység:" row="3" col="0" class="h3" marginTop="20"></Label>
+        <Label text={{orderItem.productUnitOfMeasurement}} row="3" col="1" class="label font-weight-bold" marginTop="20"></Label>
+        <!--<TextView row="3" col="1" class="text-input" marginTop="10" isEnabled="false"
+                  [(ngModel)]="orderItem.productUnitOfMeasurement"></TextView>-->
+    </GridLayout>
+    <GridLayout rows="auto" columns="*, *">
+        <Button text="Mentés" (tap)="save()" class="btn btn-primary btn-active" margin="5"
+                row="6" col="0"></Button>
+        <Button text="Mégsem" (tap)="onClose()" class="btn btn-danger" margin="5"
+                row="6" col="1"></Button>
+    </GridLayout>
+</StackLayout>

@@ -1,0 +1,86 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Bevételezések"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+    <Button text="Új bevételezés" (tap)="onNewOrderEntity()" class="btn btn-primary btn-active"></Button>
+    <GridLayout backgroundColor="white">
+        <ListView [items]="orderEntities" class="list-group">
+            <ng-template let-orderEntity="item">
+                <StackLayout class="list-group-item" (tap)="onDetailTap(orderEntity)">
+                    <Label text="{{ orderEntity.id }} azonosítójú bevételezés" class="label font-weight-bold"></Label>
+                    <Label text="létrehozás dátuma: {{orderEntity.createDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="raktárba felvétel dátuma: {{orderEntity.dueDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="fizetés dátuma: {{orderEntity.paymentDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="státusza: {{orderEntity.statusName}}" class="footnote"></Label>
+                    <Label text="bevételezendő termékek száma: {{orderEntity.orderItemList.length}}" class="footnote"></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+        <ActivityIndicator row="0" rowSpan="5" colSpan="2" [busy]="isBusy" class="activity-indicator"></ActivityIndicator>
+    </GridLayout>
+    <!--<Repeater items="{{ orderEntities }}">
+        <Repeater.itemTemplate>
+            <AbsoluteLayout>
+
+                &lt;!&ndash;BACKGROUND&ndash;&gt;
+                <GridLayout class="actions" rows="60, auto" columns="80, *, 80">
+                    <Label col="0" row="0" text="Szerkesztés" class="action-edit" tap="editOrderEntity"></Label>
+                    <Label col="1" row="0"></Label>
+                    <Label col="2" row="0" text="Törlés" class="action-delete" tap="deleteOrderEntity"></Label>
+                    &lt;!&ndash;DIVIDER&ndash;&gt;
+                    <StackLayout row="1" colSpan="3" class="divider"></StackLayout>
+                </GridLayout>
+
+                &lt;!&ndash;FOREGROUND&ndash;&gt;
+                <StackLayout class="info"  pan="onForegroundPan">
+                    <Label text="{{ id }} azonosítójú bevételezés" class="primary"></Label>
+                    <Label text="létrehozás dátuma: {{createDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="raktárba felvétel dátuma: {{dueDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="fizetés dátuma: {{paymentDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="státusza: {{statusName}}" class="footnote"></Label>
+                    <Label text="bevételezendő termékek száma: {{orderItemList?.length}}" class="footnote"></Label>
+                </StackLayout>
+
+            </AbsoluteLayout>
+        </Repeater.itemTemplate>
+    </Repeater>-->
+    <!--<GridLayout>
+        <RadListView
+            id="radlistview"
+            [items]="orderEntities"
+            swipeActions="true"
+            pullToRefresh="true"
+            (pullToRefreshInitiated)="onPullToRefreshInitiated($event)"
+            (itemSwipeProgressStarted)="onSwipeCellStarted($event)">
+            &lt;!&ndash;<Template tkListItemTemplate let-email="item">
+                <StackLayout class="listItemStackLayout">
+                    <Label text="{{ email }}"></Label>
+                </StackLayout>
+            </Template>&ndash;&gt;
+            <RadListView.itemTemplate *tkListItemTemplate>&lt;!&ndash; let-orderEntity="item"&ndash;&gt;
+                <StackLayout class="listItemStackLayout" (tap)="onDetailTap(item)" *ngIf="orderEntities">
+                    <Label text="{{ item.id }} azonosítójú bevételezés" class="label font-weight-bold"></Label>
+                    <Label text="létrehozás dátuma: {{item.createDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="raktárba felvétel dátuma: {{item.dueDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="fizetés dátuma: {{item.paymentDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
+                    <Label text="státusza: {{item.statusName}}" class="footnote"></Label>
+                    <Label text="bevételezendő termékek száma: {{item.orderItemList?.length}}" class="footnote"></Label>
+                    &lt;!&ndash;<StackLayout class="hr-light"></StackLayout>&ndash;&gt;
+                </StackLayout>
+            </RadListView.itemTemplate>
+            <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto">&lt;!&ndash;class="listItemSwipeGridLayout"&ndash;&gt;
+                <StackLayout class="editViewStackLayout" col="0" (tap)="onEdit()">
+                    <Label text="Szerkesztés" verticalAlignment="center" horizontalAlignment="center"></Label>
+                </StackLayout>
+                <StackLayout class="deleteViewStackLayout" col="2" (tap)="onDelete()">
+                    <Label text="Törlés" verticalAlignment="center" horizontalAlignment="center"></Label>
+                </StackLayout>
+            </GridLayout>
+        </RadListView>
+    </GridLayout>-->
+</StackLayout>

@@ -1,0 +1,63 @@
+<StackLayout class="page">
+    <Label text="Új termék" class="h1 text-center text-white"></Label>
+    <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="auto, *" margin="5" marginTop="10">
+        <Label text="Név:" row="0" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="0" col="1" class="text-input" marginTop="10"
+                  required [(ngModel)]="product.name" #nameModel="ngModel"></TextView>
+
+        <Label text="Ár:" row="1" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="1" col="1" class="text-input" marginTop="10"
+                  [(ngModel)]="product.price"></TextView>
+
+        <Label text="Mennyiség:" row="2" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="2" col="1" class="text-input" marginTop="10"
+                  [(ngModel)]="product.quantity"></TextView>
+
+        <Label text="Mértékegység:" row="3" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="3" col="1" class="text-input" marginTop="10"
+                  [(ngModel)]="product.unitOfMeasurement"></TextView>
+
+        <Label text="Vonalkód:" row="4" col="0" class="h3" marginTop="20"></Label>
+        <TextView row="4" col="1" class="text-input" marginTop="10" isEnabled="false"
+                  required [(ngModel)]="product.barcode" #barcodeModel="ngModel"></TextView>
+        <Button text="Vonalkód beolvasása" (tap)="onScan()" class="btn" margin="5" row="5" col="1" ></Button>
+    </GridLayout>
+    <!--<GridLayout rows="auto" columns="*" margin="5">
+    </GridLayout>-->
+    <!--<ListPicker items="{{ listPickerCountries }}" selectedIndex="{{ selectedListPickerIndex }}"></ListPicker>-->
+        <!--<RadDataForm marginTop="50" row="1" [source]="product">
+            <TKEntityProperty tkDataFormProperty name="name" displayName="Név:" index="0" required="true">
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="price" displayName="Ár:" index="1">
+                <TKPropertyEditor tkEntityPropertyEditor type="Number"></TKPropertyEditor>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="quantity" displayName="Mennyiség:" index="2">
+                <TKPropertyEditor tkEntityPropertyEditor type="Number"></TKPropertyEditor>
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="unitOfMeasurement" displayName="Mértékegység:" index="3">
+            </TKEntityProperty>
+            <TKEntityProperty tkDataFormProperty name="barcode" displayName="Vonalkód:" index="4"
+                              required="true" readonly="true">
+            </TKEntityProperty>
+            <Button text="Beolvasás" (tap)="onScan()" class="btn btn-active"></Button>
+        </RadDataForm>-->
+        <!--<df:RadDataForm id="myDataForm" source="{{ product }}">
+            <df:RadDataForm.properties>
+                <df:EntityProperty name="name" displayName="Név:" index="0" required="true"/>
+                <df:EntityProperty name="price" displayName="Ár:" index="1"/>
+                <df:EntityProperty name="quantity" displayName="Mennyiség:" index="2"/>
+                <df:EntityProperty name="unitOfMeasurement" displayName="Mértékegység:" index="3"/>
+                <df:EntityProperty name="barcode" displayName="Vonalkód:" index="4" required="true"
+                                   readonly="true"/>
+            </df:RadDataForm.properties>
+        </df:RadDataForm>-->
+    <GridLayout rows="auto" columns="*, *">
+        <Button text="Mentés" (tap)="save()" class="btn btn-primary btn-active" margin="5" row="6"
+                col="0"
+        ><!--isEnabled="isFormValid()"-->
+        </Button>
+        <Button text="Mégsem" (tap)="onClose()" class="btn btn-danger" margin="5" row="6"
+                col="1"></Button>
+    </GridLayout>
+    <!--<ActivityIndicator busy="{{ isBusy }}" class="activity-indicator"/>-->
+</StackLayout>

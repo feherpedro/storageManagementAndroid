@@ -1,0 +1,30 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Termék - részletes nézet"></Label>
+</ActionBar>
+
+<StackLayout class="page">
+    <Label text="{{ product.id }} azonosítójú termék" class="h2 text-center"></Label>
+    <GridLayout backgroundColor="white">
+        <StackLayout class="list-group-item">
+            <Label text="vonalkód: {{product.barcode}}" class="label font-weight-bold"></Label>
+            <Label text="név: {{product.name}}" class="label font-weight-bold"></Label>
+            <Label text="státusza: {{product.statusName}}" class="label font-weight-bold"></Label>
+            <Label text="ár: {{product.price}}" class="label font-weight-bold"></Label>
+            <Label text="mennyiség: {{product.quantity}} {{product.unitOfMeasurement}}" class="label font-weight-bold"></Label>
+            <!--<Label text="mértékegység:" class="label font-weight-bold"></Label>-->
+            <Label text="termék kategória: {{product.productCategoryName}}" class="label font-weight-bold"></Label>
+            <Label text="ár kategória: {{product.priceCategoryName}}" class="label font-weight-bold"></Label>
+            <GridLayout rows="auto" columns="*, *">
+                <Button text="Szerkesztés" (tap)="onEdit()" class="btn btn-primary btn-active" margin="5" row="0"
+                        col="0">
+                </Button>
+                <Button text="Törlés" (tap)="onDelete()" class="btn btn-danger" margin="5" row="0"
+                        col="1"></Button>
+            </GridLayout>
+        </StackLayout>
+    </GridLayout>
+</StackLayout>
