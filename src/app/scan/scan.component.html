@@ -17,8 +17,8 @@
 
 <GridLayout class="page page-content" tkMainContent>
 <StackLayout class="page">
-    <Label text="Barcode Scanner" class="h1 text-center"></Label>
-    <Button text="SCAN" (tap)="onScan()" class="btn btn-primary btn-active"></Button>
+    <Label text="Árucikk leolvasó" class="h1 text-center"></Label>
+    <Button text="Beolvasás" (tap)="onScan()" class="btn btn-primary btn-active"></Button>
     <Label text="Beolvasott formátum: {{scannedFormat}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
     <Label text="Beolvasott kód: {{scannedText}}" visibility="{{ scanned ? 'visible' : 'collapsed' }}"></Label>
 </StackLayout>

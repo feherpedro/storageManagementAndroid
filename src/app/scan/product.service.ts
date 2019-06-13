@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 
 import { map } from "rxjs/operators";
 import { Product } from "./product.model";
+import { createRequestOption } from "~/app/shared/request-util";
 // import { createRequestOption } from "../../shared";
 
 export type EntityResponseType = HttpResponse<Product>;
@@ -37,9 +38,9 @@ export class ProductService {
     }
 
     query(req?: any): Observable<HttpResponse<Product[]>> {
-        // const options = createRequestOption(req);
+        const options = createRequestOption(req);
 
-        return this.http.get<Product[]>(this.resourceUrl, { observe: "response" })/* params: options,*/
+        return this.http.get<Product[]>(this.resourceUrl, { params: options, observe: "response" })
             .pipe(map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res)));
     }
 
@@ -49,9 +50,9 @@ export class ProductService {
     }
 
     search(req?: any): Observable<HttpResponse<Product[]>> {
-        // const options = createRequestOption(req);
+        const options = createRequestOption(req);
 
-        return this.http.get<Product[]>(this.resourceSearchUrl, { observe: "response" })/* params: options,*/
+        return this.http.get<Product[]>(this.resourceSearchUrl, { params: options, observe: "response" })/* */
             .pipe(map((res: HttpResponse<Product[]>) => this.convertArrayResponse(res)));
     }
 

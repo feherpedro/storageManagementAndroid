@@ -16,7 +16,7 @@
 
                 <StackLayout row="1" class="input-field">
                     <TextField class="input" hint="Felhasználónév" [isEnabled]="!processing"
-                        keyboardType="input" autocorrect="false"
+                        keyboardType="email" autocorrect="false"
                         autocapitalizationType="none" [(ngModel)]="user.login"
                         returnKeyType="next" (returnPress)="focusPassword()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
@@ -37,7 +37,7 @@
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
-                <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+                <ActivityIndicator rowSpan="4" [busy]="processing"></ActivityIndicator>
             </GridLayout>
         </PreviousNextView>
 

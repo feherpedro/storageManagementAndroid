@@ -24,9 +24,11 @@ export class ScanComponent implements OnInit {
     private scanned = false;
     private scannedFormat = "";
     private scannedText = "";
+    private scannedProduct: Product;
     private product: Product;
     private productList: Product[];
     private confirmOptions: dialogs.ConfirmOptions = {};
+
     // orientation = require("nativescript-orientation");        formats: "QR_CODE, EAN_13",
 
     constructor(private barcodeScanner: BarcodeScanner,
@@ -61,14 +63,32 @@ export class ScanComponent implements OnInit {
                 dialogs.confirm(confirmOptions).then((action) => {
                     console.log("Dialog result: " + action);
                     if (action) {
-                        this.productService.query()
+                        // this.productService.search({"barcode.equals": result.text})
+                        this.productService.search({query: "barcode.equals=" + result.text})
                         .subscribe(
                             (res: HttpResponse<Product[]>) => {
                                 this.productList = res.body;
-                                console.log(res.body);
-                            },
-                            (res: HttpErrorResponse) => console.log(res.message)
-                        );
+                                this.scannedProduct = this.productList[0];
+                                const alertOptions: dialogs.AlertOptions = {
+                                    title: "Leolvasott termék",
+                                    message: "A " + this.scannedProduct.barcode +
+                                        " vonalkódú termék ára: " + this.scannedProduct.price + ",\n" +
+                                        "Raktáron: " + this.scannedProduct.quantity + " " +
+                                        this.scannedProduct.unitOfMeasurement,
+                                    okButtonText: "OK"
+                                };
+
+                                setTimeout(() => {
+                                    dialogs.confirm(alertOptions).then((action2) => {
+                                        console.log("Dialog result: " + action2);
+                                        if (action2) {
+
+                                        }
+                                    });
+                                }, 0);
+                            }, (errorMessage) => {
+                                console.log("Hiba a termék lekérésekor: " + errorMessage);
+                            });
                         /*
                         this.productService.find(parseInt(this.scannedText, 10))
                         .subscribe(
