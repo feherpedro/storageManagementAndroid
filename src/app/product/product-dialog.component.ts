@@ -30,12 +30,6 @@ export class ProductDialogComponent implements OnInit {
     ngOnInit(): void {
         this.isSaving = false;
     }
-    /*
-        ngAfterViewInit(): void {
-            /!*setTimeout(() => {
-                this.loadAll();
-            }, 0);*!/
-        }*/
 
     save() {
         this.isSaving = true;
@@ -85,10 +79,28 @@ export class ProductDialogComponent implements OnInit {
             this.product.barcode = result.text;
         }, (errorMessage) => {
             console.log("Hiba a beolvasáskor: " + errorMessage);
+
+            dialogs.alert({
+                title: "Beolvasási hiba",
+                message: "Hiba a beolvasáskor: " + errorMessage.status + errorMessage.statusMessage,
+                okButtonText: "Bezárás"
+            }).then(() => {
+                console.log("Dialog closed!");
+            });
         });
     }
 
     private isFormValid(): boolean {
         return this.nameModel.nativeElement.valid && this.barcodeModel.nativeElement.valid;
     }
+
+    termek: Product = {
+        name: "Termék",
+        costPrice: 0,
+        price: 0,
+        quantity: 0,
+        unitOfMeasurement: "db",
+        manufacturer: "Gyártó",
+        barcode: "vonalkód"
+    };
 }

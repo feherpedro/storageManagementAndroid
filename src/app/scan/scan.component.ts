@@ -73,7 +73,7 @@ export class ScanComponent implements OnInit {
                                 const alertOptions: dialogs.AlertOptions = {
                                     title: "Leolvasott termék",
                                     message: "A " + this.scannedProduct.barcode +
-                                        " vonalkódú termék ára: " + this.scannedProduct.price + ",\n" +
+                                        " vonalkódú termék ára: " + this.scannedProduct.price + " Ft,\n" +
                                         "Raktáron: " + this.scannedProduct.quantity + " " +
                                         this.scannedProduct.unitOfMeasurement,
                                     okButtonText: "OK"

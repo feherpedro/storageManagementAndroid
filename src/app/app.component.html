@@ -12,7 +12,8 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
             <!--<Label class="sidedrawer-header-raktar-image fa" text="&#xf2bd;"></Label>-->
             <Image src="res://raktar" class="sidedrawer-header-raktar-image fa"></Image>
             <Label class="sidedrawer-header-brand" text="Raktár nyilvántartó rendszer"></Label>
-            <Label class="footnote" text="Fehér Péter"></Label>
+            <Label *ngIf="isUserLoggedIn()" class="sidedrawer-header-brand" text="Bejelentkezve, mint: {{username}}"></Label>
+            <Label class="footnote" text="Készítette: Fehér Péter"></Label>
         </StackLayout>
     
         <ScrollView row="1" class="sidedrawer-content">
@@ -53,9 +54,24 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
 
                 <StackLayout class="hr-light"></StackLayout>
 
-                <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/order-entities')" (tap)="onNavItemTap('/order-entities')">
+                <GridLayout *ngIf="isAdminOrStoreKeeper()" columns="auto, *" class="sidedrawer-list-item"
+                            [class.selected]="isComponentSelected('/order-entities')" (tap)="onNavItemTap('/order-entities')">
                     <Label col="0" text="&#xf005;" class="fa"></Label>
                     <Label col="1" text="Bevételezések" class="p-r-10"></Label>
+                </GridLayout>
+
+                <StackLayout class="hr-light"></StackLayout>
+
+                <GridLayout *ngIf="!isUserLoggedIn()" columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/login')" (tap)="onNavItemTap('/login')">
+                    <Label col="0" text="&#xf005;" class="fa"></Label>
+                    <Label col="1" text="Bejelentkezés" class="p-r-10"></Label>
+                </GridLayout>
+
+                <StackLayout class="hr-light"></StackLayout>
+
+                <GridLayout *ngIf="isUserLoggedIn()" columns="auto, *" class="sidedrawer-list-item" (tap)="logout()">
+                    <Label col="0" text="&#xf005;" class="fa"></Label>
+                    <Label col="1" text="Kijelentkezés" class="p-r-10"></Label>
                 </GridLayout>
 
                 <StackLayout class="hr-light"></StackLayout>

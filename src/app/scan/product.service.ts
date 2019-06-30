@@ -5,7 +5,6 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { Product } from "./product.model";
 import { createRequestOption } from "~/app/shared/request-util";
-// import { createRequestOption } from "../../shared";
 
 export type EntityResponseType = HttpResponse<Product>;
 

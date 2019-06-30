@@ -1,23 +1,33 @@
+<ActionBar class="action-bar">
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+<!--    <Label *ngIf="!isLoggingIn" class="action-bar-title" text="Regisztráció"></Label>-->
+<!--    <Label *ngIf="isLoggingIn" class="action-bar-title" text="Bejelentkezés"></Label>-->
+    <Label class="action-bar-title" [text]="isLoggingIn ? 'Bejelentkezés' : 'Regisztráció'"></Label>
+</ActionBar>
+
 <FlexboxLayout class="page">
     <StackLayout class="form">
-        <Image class="logo" src="App_Resources/raktar.png"></Image>
-        <Label class="header" text="Raktár"></Label>
-        <Button (tap)="processing=false"></Button>
+        <!--<Image class="logo sidedrawer-header-raktar-image fa" stretch="fill" src="res://raktar.png"></Image>&lt;!&ndash;class="sidedrawer-header-raktar-image fa"&ndash;&gt;
+        <Label class="header" text="Bejelentkezés"></Label>-->
+<!--        <Button (tap)="processing=false"></Button>-->
 
         <PreviousNextView>
-            <GridLayout rows="auto, auto, auto">
-                <StackLayout row="0" class="input-field">
+            <GridLayout rows="auto, auto, auto, auto">
+                <!--<StackLayout row="0" class="input-field" *ngIf="!isLoggingIn">
                     <TextField class="input" hint="Email" [isEnabled]="!processing"
                         keyboardType="email" autocorrect="false"
                         autocapitalizationType="none" [(ngModel)]="user.email"
                         returnKeyType="next" (returnPress)="focusLogin()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
-                </StackLayout>
+                </StackLayout>-->
 
                 <StackLayout row="1" class="input-field">
                     <TextField class="input" hint="Felhasználónév" [isEnabled]="!processing"
                         keyboardType="email" autocorrect="false"
-                        autocapitalizationType="none" [(ngModel)]="user.login"
+                        autocapitalizationType="none" [(ngModel)]="user.username"
                         returnKeyType="next" (returnPress)="focusPassword()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
@@ -43,8 +53,8 @@
 
         <Button [text]="isLoggingIn ? 'Belépés' : 'Regisztráció'" [isEnabled]="!processing"
             (tap)="submit()" class="btn btn-primary m-t-20"></Button>
-        <Label *ngIf="isLoggingIn" text="Elfelejtette jelszavát?" class="login-label"
-            (tap)="forgotPassword()"></Label>
+        <!--<Label *ngIf="isLoggingIn" text="Elfelejtette jelszavát?" class="login-label"
+            (tap)="forgotPassword()"></Label>-->
     </StackLayout>
 
     <Label class="login-label sign-up-label" (tap)="toggleForm()">

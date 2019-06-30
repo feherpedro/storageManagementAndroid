@@ -12,6 +12,7 @@ import * as Utils from "tns-core-modules/utils/utils";
 import { OrderEntityDialogComponent } from "./order-entity-dialog.component";
 import { OrderEntity } from "./order-entity.model";
 import { OrderEntityService } from "./order-entity.service";
+import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: "OrderEntity",
@@ -39,6 +40,9 @@ export class OrderEntityComponent implements OnInit, AfterViewInit {
         // setTimeout(() => {
         //     this.loadAll();
         // }, 0);
+        if (!ApplicationSettings.getString("authenticationToken")) {
+            this.routerExtensions.navigate(["/login"]);
+        }
     }
 
     ngAfterViewInit(): void {

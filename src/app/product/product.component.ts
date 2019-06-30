@@ -7,6 +7,7 @@ import * as app from "tns-core-modules/application";
 import { ProductDialogComponent } from "./product-dialog.component";
 import { Product } from "./product.model";
 import { ProductService } from "./product.service";
+import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: "Product",
@@ -24,7 +25,11 @@ export class ProductComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadAll();
+        if (!ApplicationSettings.getString("authenticationToken")) {
+            this.routerExtensions.navigate(["/login"]);
+        } else {
+            this.loadAll();
+        }
     }
 
     onDrawerButtonTap(): void {
@@ -37,6 +42,11 @@ export class ProductComponent implements OnInit {
             (res: HttpResponse<Product[]>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    isAdminOrStoreKeeper() {
+
+        return ApplicationSettings.getBoolean("isAdmin") || ApplicationSettings.getBoolean("isStoreKeeper");
     }
 
     private onSuccess(data, headers) {

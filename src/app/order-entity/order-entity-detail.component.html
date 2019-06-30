@@ -16,12 +16,12 @@
             <Label text="fizetés dátuma: {{orderEntity.paymentDate | date:'yyyy. MM. dd.'}}" class="footnote"></Label>
             <Label text="státusza: {{orderEntity.statusName}}" class="footnote"></Label>
             <Label text="bevételezendő termékek száma: {{orderEntity.orderItemList.length}}" class="footnote"></Label>
-            <GridLayout rows="auto" columns="*, *">
-                <Button text="Szerkesztés" (tap)="onEdit()" class="btn btn-primary btn-active" margin="5" row="0"
+            <GridLayout rows="auto" columns="*">
+                <!--<Button text="Szerkesztés" (tap)="onEdit()" class="btn btn-primary btn-active" margin="5" row="0"
                         col="0">
-                </Button>
+                </Button>-->
                 <Button text="Törlés" (tap)="onDelete()" class="btn btn-danger" margin="5" row="0"
-                        col="1"></Button>
+                        ></Button><!--col="1"-->
             </GridLayout>
             <Button text="Új bevételezési termék" (tap)="onNewOrderItem()" class="btn" margin="0"
                     visibility="{{ orderEntity.statusName == 'Feldolgozás alatt' ? 'visible' : 'collapsed' }}">

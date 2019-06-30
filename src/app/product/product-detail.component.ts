@@ -8,6 +8,7 @@ import { switchMap } from "rxjs/operators";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { Product } from "./product.model";
 import { ProductService } from "./product.service";
+import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: "ProductDetail",
@@ -43,6 +44,11 @@ export class ProductDetailComponent implements OnInit {
             (res: HttpResponse<Product>) => this.onSuccess(res.body, res.headers),
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    isAdminOrStoreKeeper() {
+
+        return ApplicationSettings.getBoolean("isAdmin") || ApplicationSettings.getBoolean("isStoreKeeper");
     }
 
     private onSuccess(data, headers) {

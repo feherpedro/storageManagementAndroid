@@ -13,8 +13,8 @@
             <Label text="vonalkód: {{product.barcode}}" class="label font-weight-bold"></Label>
             <Label text="név: {{product.name}}" class="label font-weight-bold"></Label>
             <Label *ngIf="product.statusId" text="státusza: {{product.statusName}}" class="label font-weight-bold"></Label>
-            <Label *ngIf="product.costPrice" text="bevételezési ár: {{product.costPrice}}" class="label font-weight-bold"></Label>
-            <Label text="eladási ár: {{product.price}}" class="label font-weight-bold"></Label>
+            <Label *ngIf="product.costPrice" text="bevételezési ár: {{product.costPrice}} Ft" class="label font-weight-bold"></Label>
+            <Label text="eladási ár: {{product.price}} Ft" class="label font-weight-bold"></Label>
             <Label text="mennyiség: {{product.quantity}} {{product.unitOfMeasurement}}" class="label font-weight-bold"></Label>
             <!--<Label text="mértékegység:" class="label font-weight-bold"></Label>-->
             <Label *ngIf="product.manufacturer" text="gyártó: {{product.manufacturer}}" class="label font-weight-bold"></Label>
@@ -24,7 +24,7 @@
                 <!--<Button text="Szerkesztés" (tap)="onEdit()" class="btn btn-primary btn-active" margin="5" row="0"
                         col="0">
                 </Button>-->
-                <Button text="Törlés" (tap)="onDelete()" class="btn btn-danger" margin="5" row="0"
+                <Button text="Törlés" *ngIf="isAdminOrStoreKeeper()" (tap)="onDelete()" class="btn btn-danger" margin="5" row="0"
                         ></Button><!--col="0"-->
             </GridLayout>
         </StackLayout>

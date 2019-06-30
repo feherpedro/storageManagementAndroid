@@ -5,6 +5,8 @@ import { RouterExtensions } from "nativescript-angular/router";
 
 import { User } from "../shared/user.model";
 import { UserService } from "../shared/user.service";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import * as app from "tns-core-modules/application";
 
 @Component({
     selector: "app-login",
@@ -21,11 +23,13 @@ export class LoginComponent {
     @ViewChild("confirmPassword", {static: false}) confirmPassword: ElementRef;
 
     constructor(private page: Page, private userService: UserService, private routerExtensions: RouterExtensions) {
-        this.page.actionBarHidden = true;
+        // this.page.actionBarHidden = true;
         this.user = new User();
-        this.user.email = "példa@gmail.com";
-        this.user.login = "felhasználónév";
-        this.user.password = "jelszó";
+        // this.user.email = "admin";
+        // this.user.login = "admin";
+        // this.user.username = "admin";
+        // this.user.password = "admin";
+        this.user.rememberMe = true;
     }
 
     toggleForm() {
@@ -33,8 +37,8 @@ export class LoginComponent {
     }
 
     submit() {
-        if (!this.user.email || !this.user.password) {
-            this.alert("Kérem adja meg email címét és jelszavát is!");
+        if (!this.user.username || !this.user.password) {
+            this.alert("Kérem adja meg felhasználónevét és jelszavát is!");
 
             return;
         }
@@ -50,12 +54,13 @@ export class LoginComponent {
     login() {
         this.userService.login(this.user)
             .then(() => {
+                this.userService.getUser();
                 this.processing = false;
                 this.routerExtensions.navigate(["/home"], { clearHistory: true });
             })
             .catch(() => {
                 this.processing = false;
-                this.alert("Nem található ilyen felhasználó");
+                this.alert("Sikertelen bejelentkezés");
             });
     }
 
@@ -65,11 +70,14 @@ export class LoginComponent {
 
             return;
         }
+        this.user.login = this.user.username;
         this.userService.register(this.user)
-            .subscribe(() => {
+            .then(() => {
                 this.processing = false;
                 this.alert("A felhasználói fiók sikeresen létrehozva!");
                 this.isLoggingIn = true;
+                this.userService.getUser();
+                this.routerExtensions.navigate(["/home"], { clearHistory: true });
             }, () => {
                 this.processing = false;
                 this.alert("Sikertelen regisztráció");
@@ -119,5 +127,10 @@ export class LoginComponent {
             okButtonText: "OK",
             message: message
         });
+    }
+
+    onDrawerButtonTap(): void {
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.showDrawer();
     }
 }

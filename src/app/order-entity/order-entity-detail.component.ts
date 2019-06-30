@@ -111,4 +111,20 @@ export class OrderEntityDetailComponent implements OnInit {
             (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
+
+    private onDelete() {
+        this.orderEntityService.delete(this.orderEntity.id).subscribe(
+            (res: HttpResponse<void>) => {
+                dialogs.alert({
+                    title: "Sikeres művelet",
+                    message: "Sikeresen eltávolította a bevételezést",
+                    okButtonText: "Bezárás"
+                }).then(() => {
+                    console.log("Dialog closed!");
+                    this.routerExtensions.navigate(["/order-entities"]);
+                });
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
 }
